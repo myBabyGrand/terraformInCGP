@@ -1,0 +1,4 @@
+/TF content/
+**/credentials/
+**/.terraform/
+basic/.terraform.lock.hcl
