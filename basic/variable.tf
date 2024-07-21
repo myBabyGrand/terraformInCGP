@@ -1,13 +1,11 @@
 variable "project_id" {
   type        = string
   description = "The project ID that I will be working with"
-  default     = "terraform-in-gcp-429414"
 }
 
 variable "credentials_file" {
   type        = string
   description = "The JSON credential file to be used within the provider.tf file"
-  default     = "credentials\\terraform-in-gcp-credential.json"
 }
 
 variable "gcp_region" {
