@@ -1,4 +1,5 @@
 /TF content/
 **/credentials/
 **/.terraform/
-basic/.terraform.lock.hcl
+**/*_old/
+*.lock.hcl

@@ -1,0 +1,4 @@
+#short-lived credential
+for /f %i in ('gcloud auth print-access-token --impersonate-service-account sa-terraform-in-gcp-core@terraform-in-gcp-core-430313.iam.gserviceaccount.com') do set GOOGLE_OAUTH_ACCESS_TOKEN=%i
+
+#
