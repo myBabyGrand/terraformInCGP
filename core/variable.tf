@@ -19,3 +19,9 @@ variable "gcp_zone" {
   description = "The primary GCP zone within the region to be used"
   default     = "asia-northeast3-a"
 }
+
+
+variable "core_tf_project_crm_service" {
+  type        = list(string)
+  description = "the list of the services that we want to eable in the GCP project"
+}

@@ -28,3 +28,13 @@ variable "organization_id" {
 variable "billing_account" {
   type = string
 }
+
+variable "proj_net_hub_prod_0_services" {
+  type        = list(string)
+  description = "the list of the services that we want to eable in the GCP project"
+}
+
+variable "proj_infra_bapp1_prod_0_services" {
+  type        = list(string)
+  description = "the list of the services that we want to eable in the GCP project"
+}
