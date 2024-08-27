@@ -3,6 +3,7 @@ credentials_file = "..\\credentials\\mybabygrand-terraform-in-gcp-core.json"
 gcp_region       = "asia-northeast3"
 gcp_zone         = "asia-northeast3-a"
 
-core_tf_project_crm_service = [
-  "cloudbilling.googleapis.com"
+core_tf_project_services = [
+  "cloudbilling.googleapis.com",
+  "billingbudgets.googleapis.com",
 ]

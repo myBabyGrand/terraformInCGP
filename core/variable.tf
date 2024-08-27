@@ -21,7 +21,7 @@ variable "gcp_zone" {
 }
 
 
-variable "core_tf_project_crm_service" {
+variable "core_tf_project_services" {
   type        = list(string)
   description = "the list of the services that we want to eable in the GCP project"
 }
