@@ -56,3 +56,40 @@ variable "vpc_mtu" {
   description = "The value of the MTU for our new VPC"
   default     = 1460
 }
+
+
+# VMs
+variable "business_app_1_vm_config" {
+  description = "The app VM configuration values and properties"
+  type = object(
+    {
+      app_name          = string
+      short_app_name    = string
+      vm_name           = string
+      vm_type           = string
+      vm_tags           = list(string)
+      vm_image          = string
+      vm_boot_disk_type = string
+      boot_disk_size    = number
+      vm_startup_script = string
+    }
+  )
+}
+
+variable "business_app_1_db_vm_config" {
+  description = "The DB VM configuration values and properties"
+  type = object(
+    {
+      app_name          = string
+      short_app_name    = string
+      vm_name           = string
+      vm_type           = string
+      vm_tags           = list(string)
+      vm_image          = string
+      vm_boot_disk_type = string
+      boot_disk_size    = number
+      vm_startup_script = string
+    }
+  )
+}
+

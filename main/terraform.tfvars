@@ -22,3 +22,30 @@ proj_net_hub_prod_0_services = [
   "sql-component.googleapis.com",
   "sqladmin.googleapis.com",
 ]
+
+
+#VMs
+business_app_1_vm_config = {
+  app_name          = "business_app_1"
+  short_app_name    = "bapp1"
+  vm_name           = "bapp1"
+  vm_type           = "e2-medium"
+  vm_tags           = ["bapp1", "prod", "app-fe"]
+  vm_image          = "debian-cloud/debian-11"
+  vm_boot_disk_type = "pd-standard"
+  boot_disk_size    = 10
+  vm_startup_script = "sudo apt-get update; sudo apt-get install -yq build-essential python3-pip rsync; pip install flask"
+}
+
+
+business_app_1_db_vm_config = {
+  app_name          = "business_app_1"
+  short_app_name    = "bapp1"
+  vm_name           = "bapp1-db"
+  vm_type           = "e2-medium"
+  vm_tags           = ["bapp1", "prod", "be-db"]
+  vm_image          = "debian-cloud/debian-11"
+  vm_boot_disk_type = "pd-ssd"
+  boot_disk_size    = 10
+  vm_startup_script = "sudo apt-get update; sudo apt-get install -yq mariadb-server"
+}
