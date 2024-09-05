@@ -25,8 +25,8 @@ proj_net_hub_prod_0_services = [
 
 
 #VMs
-business_app_1_vm_config = {
-  app_name          = "business_app_1"
+business_app_1_app_vm_config = {
+  app_name          = "business-app-1"
   short_app_name    = "bapp1"
   vm_name           = "bapp1"
   vm_type           = "e2-medium"
@@ -39,7 +39,7 @@ business_app_1_vm_config = {
 
 
 business_app_1_db_vm_config = {
-  app_name          = "business_app_1"
+  app_name          = "business-app-1"
   short_app_name    = "bapp1"
   vm_name           = "bapp1-db"
   vm_type           = "e2-medium"

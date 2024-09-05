@@ -57,9 +57,8 @@ variable "vpc_mtu" {
   default     = 1460
 }
 
-
 # VMs
-variable "business_app_1_vm_config" {
+variable "business_app_1_app_vm_config" {
   description = "The app VM configuration values and properties"
   type = object(
     {
