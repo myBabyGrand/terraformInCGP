@@ -45,9 +45,10 @@ resource "google_compute_instance_template" "business_app_1_app_vm_template" {
   network_interface {
     subnetwork = google_compute_subnetwork.subnet_prod_0_ane1.id
 
-    access_config {
-      # Include this section to give the VM an external IP address
-    }
+    #getting public ip
+    # access_config {
+    #   # Include this section to give the VM an external IP address
+    # }
   }
 
   service_account {
@@ -68,15 +69,16 @@ resource "google_compute_instance_template" "business_app_1_app_vm_template" {
     provisioning_model = "SPOT"
   }
 
-  #   lifecycle {
-  #     create_before_destroy = true
-  #     ignore_changes = [
-  #       disk[0].resource_policies,
-  #       network_interface[0].queue_count,
-  #       scheduling[0].instance_termination_action,
-  #       scheduling[0].min_node_cpus,
-  #     ]
-  #   }
+  # lifecycle {
+  # create_before_destroy = true
+  # ignore_changes = [
+  #   disk[0].resource_policies,
+  #   network_interface[0].queue_count,
+  #   scheduling[0].instance_termination_action,
+  #   scheduling[0].min_node_cpus,
+  # ]
+  # ignore_changes = all
+  # }
 
   #   depends_on = [
   #     module.proj_infra_bapp1_prod_0,

@@ -62,15 +62,17 @@ variable "business_app_1_app_vm_config" {
   description = "The app VM configuration values and properties"
   type = object(
     {
-      app_name          = string
-      short_app_name    = string
-      vm_name           = string
-      vm_type           = string
-      vm_tags           = list(string)
-      vm_image          = string
-      vm_boot_disk_type = string
-      boot_disk_size    = number
-      vm_startup_script = string
+      app_name                = string
+      short_app_name          = string
+      vm_name                 = string
+      vm_type                 = string
+      vm_tags                 = list(string)
+      vm_image                = string
+      vm_boot_disk_type       = string
+      boot_disk_size          = number
+      vm_startup_script       = string
+      autoscaler_min_replicas = number
+      autoscaler_max_replicas = number
     }
   )
 }
@@ -92,3 +94,11 @@ variable "business_app_1_db_vm_config" {
   )
 }
 
+variable "named_ports" {
+  type = object({
+    bapp1 = object({
+      port_name   = string
+      port_number = number
+    })
+  })
+}

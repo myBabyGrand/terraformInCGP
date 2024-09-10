@@ -27,3 +27,7 @@ output "db_vm_internal_ip" {
 # output "app_vm_external_ip" {
 #   value = google_compute_instance.bapp_1_app_vm.network_interface[0].access_config[0].nat_ip
 # }
+
+output "bapp_1_public_url" {
+  value = google_compute_managed_ssl_certificate.business_app_1_cert.managed[0].domains[0]
+}

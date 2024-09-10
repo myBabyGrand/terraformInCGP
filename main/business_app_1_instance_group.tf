@@ -10,11 +10,9 @@ resource "google_compute_region_instance_group_manager" "business_app_1_igm" {
     instance_template = google_compute_instance_template.business_app_1_app_vm_template.self_link_unique
   }
 
-  target_size = 3
-
   named_port {
-    name = "bapp1-fe-port"
-    port = 8888
+    name = var.named_ports.bapp1.port_name
+    port = var.named_ports.bapp1.port_number
   }
 
   auto_healing_policies {

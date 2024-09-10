@@ -76,9 +76,10 @@ resource "google_compute_instance" "bapp_1_db_vm" {
   network_interface {
     subnetwork = google_compute_subnetwork.subnet_prod_0_ane1.id
 
-    access_config {
-      # Include this section to give the VM an external IP address
-    }
+    #getting public ip
+    # access_config {
+    #   # Include this section to give the VM an external IP address
+    # }
   }
 
   service_account {
@@ -98,5 +99,8 @@ resource "google_compute_instance" "bapp_1_db_vm" {
     automatic_restart  = false
     provisioning_model = "SPOT"
   }
+  # lifecycle {
+  #   ignore_changes = all
+  # }
 }
 
