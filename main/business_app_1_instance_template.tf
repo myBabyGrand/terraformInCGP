@@ -1,17 +1,17 @@
-# resource "random_string" "random_suffix" {
-#   length  = 5
-#   special = false
-#   upper   = false
+resource "random_string" "random_suffix" {
+  length  = 5
+  special = false
+  upper   = false
 
-#     keepers = {
-#       app_version = "${var.business_app_1_app_vm_config.app_version}"
-#     }
-# }
+  keepers = {
+    timestamp = "${timestamp()}"
+  }
+}
 
 # business-app-1 VMs instance template
 resource "google_compute_instance_template" "business_app_1_app_vm_template" {
   project      = google_project.proj_infra_bapp1_prod_0.project_id
-  name         = "templ-${var.business_app_1_app_vm_config.short_app_name}"
+  name         = "templ-${var.business_app_1_app_vm_config.short_app_name}-${random_string.random_suffix.result}"
   machine_type = var.business_app_1_app_vm_config.vm_type
   region       = var.gcp_region
 
@@ -31,10 +31,10 @@ resource "google_compute_instance_template" "business_app_1_app_vm_template" {
     disk_type    = var.business_app_1_app_vm_config.vm_boot_disk_type
     disk_size_gb = var.business_app_1_app_vm_config.boot_disk_size
 
-    # labels = {
-    #   disk-type = "boot"
-    #   app-name  = var.business_app_1_app_vm_config.app_name
-    # }
+    labels = {
+      disk-type = "boot"
+      app-name  = var.business_app_1_app_vm_config.app_name
+    }
   }
 
   metadata = {
@@ -69,16 +69,15 @@ resource "google_compute_instance_template" "business_app_1_app_vm_template" {
     provisioning_model = "SPOT"
   }
 
-  # lifecycle {
-  # create_before_destroy = true
-  # ignore_changes = [
-  #   disk[0].resource_policies,
-  #   network_interface[0].queue_count,
-  #   scheduling[0].instance_termination_action,
-  #   scheduling[0].min_node_cpus,
-  # ]
-  # ignore_changes = all
-  # }
+  lifecycle {
+    create_before_destroy = true
+    ignore_changes = [
+      disk[0].resource_policies,
+      network_interface[0].queue_count,
+      scheduling[0].instance_termination_action,
+      scheduling[0].min_node_cpus,
+    ]
+  }
 
   #   depends_on = [
   #     module.proj_infra_bapp1_prod_0,

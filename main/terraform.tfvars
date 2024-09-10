@@ -30,13 +30,14 @@ business_app_1_app_vm_config = {
   short_app_name          = "bapp1"
   vm_name                 = "bapp1"
   vm_type                 = "e2-medium"
-  vm_tags                 = ["bapp1", "prod", "app-fe"]
+  vm_tags                 = ["bapp1", "prod", "app-fe", "tcp8888"]
   vm_image                = "debian-cloud/debian-11"
   vm_boot_disk_type       = "pd-standard"
   boot_disk_size          = 10
   vm_startup_script       = "sudo apt-get update; sudo apt-get install -yq build-essential python3-pip rsync; pip install flask"
   autoscaler_min_replicas = 3
   autoscaler_max_replicas = 9
+  # app_version             = "1.7"
 }
 
 

@@ -20,17 +20,17 @@ resource "google_compute_region_instance_group_manager" "business_app_1_igm" {
     initial_delay_sec = 300
   }
 
-  #   update_policy {
-  #     type                           = "PROACTIVE"
-  #     instance_redistribution_type   = "PROACTIVE"
-  #     minimal_action                 = "REPLACE"
-  #     most_disruptive_allowed_action = "REPLACE"
-  #     max_surge_fixed                = 3
-  #     max_unavailable_fixed          = 0
-  #     replacement_method             = "SUBSTITUTE"
-  #   }
+  update_policy {
+    type                           = "PROACTIVE"
+    instance_redistribution_type   = "PROACTIVE"
+    minimal_action                 = "REPLACE"
+    most_disruptive_allowed_action = "REPLACE"
+    max_surge_fixed                = 3
+    max_unavailable_fixed          = 0
+    replacement_method             = "SUBSTITUTE"
+  }
 
-  #   depends_on = [
-  #     google_compute_instance_template.business_app_1_app_vm_template
-  #   ]
+  depends_on = [
+    google_compute_instance_template.business_app_1_app_vm_template
+  ]
 }
