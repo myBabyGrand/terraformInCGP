@@ -37,7 +37,7 @@ business_app_1_app_vm_config = {
   vm_startup_script       = "sudo apt-get update; sudo apt-get install -yq build-essential python3-pip rsync; pip install flask"
   autoscaler_min_replicas = 3
   autoscaler_max_replicas = 9
-  # app_version             = "1.7"
+  app_version             = "1.7"
 }
 
 

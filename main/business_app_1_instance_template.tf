@@ -4,7 +4,7 @@ resource "random_string" "random_suffix" {
   upper   = false
 
   keepers = {
-    timestamp = "${timestamp()}"
+    app_version = "${var.business_app_1_app_vm_config.app_version}"
   }
 }
 

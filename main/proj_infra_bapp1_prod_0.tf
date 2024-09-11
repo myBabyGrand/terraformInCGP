@@ -3,6 +3,10 @@ resource "google_project" "proj_infra_bapp1_prod_0" {
   project_id      = "proj-infra-bapp1-prod-20240727"
   billing_account = var.billing_account
   folder_id       = google_folder.infrastructure.id
+
+  depends_on = [
+    google_folder.infrastructure
+  ]
 }
 
 
@@ -11,6 +15,10 @@ resource "google_project_service" "proj_infra_bapp1_prod_0_crm_service" {
   project                    = google_project.proj_infra_bapp1_prod_0.id
   service                    = "cloudresourcemanager.googleapis.com"
   disable_dependent_services = true
+
+  depends_on = [
+    google_project.proj_infra_bapp1_prod_0
+  ]
 }
 
 # Eabling the maining API and services
@@ -19,6 +27,10 @@ resource "google_project_service" "proj_infra_bapp1_prod_0_services" {
   project                    = google_project.proj_infra_bapp1_prod_0.id
   service                    = var.proj_infra_bapp1_prod_0_services[count.index]
   disable_dependent_services = true
+
+  depends_on = [
+    google_project_service.proj_infra_bapp1_prod_0_crm_service
+  ]
 }
 
 # Budget alert for the project

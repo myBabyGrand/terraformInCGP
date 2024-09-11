@@ -12,12 +12,12 @@ resource "google_storage_bucket" "business_app_1_bucket" {
   ]
 }
 
-# resource "time_sleep" "delay_create_30s" {
-#   depends_on = [
-#     google_storage_bucket.business_app_1_bucket
-#   ]
-#   create_duration = "30s"
-# }
+resource "time_sleep" "delay_create_30s" {
+  depends_on = [
+    google_storage_bucket.business_app_1_bucket
+  ]
+  create_duration = "30s"
+}
 
 # Startup script object
 resource "google_storage_bucket_object" "business_app_1_app_startup_script" {
@@ -26,7 +26,11 @@ resource "google_storage_bucket_object" "business_app_1_app_startup_script" {
   content = file("scripts/bapp-1/startup-script.sh")
   bucket  = google_storage_bucket.business_app_1_bucket.id
 
-  #   depends_on = [
-  #     time_sleep.delay_create_30s
-  #   ]
+  depends_on = [
+    time_sleep.delay_create_30s
+  ]
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }

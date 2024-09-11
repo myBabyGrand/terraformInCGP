@@ -3,6 +3,10 @@ resource "google_project" "proj_net_hub_prod_0" {
   project_id      = "proj-net-hub-prod-20240727"
   billing_account = var.billing_account
   folder_id       = google_folder.network.id
+
+  depends_on = [
+    google_folder.network
+  ]
 }
 
 # Eabling the Cloud Resource Manager API
@@ -10,6 +14,10 @@ resource "google_project_service" "proj_net_hub_prod_0_crm_service" {
   project                    = google_project.proj_net_hub_prod_0.id
   service                    = "cloudresourcemanager.googleapis.com"
   disable_dependent_services = true
+
+  depends_on = [
+    google_project.proj_net_hub_prod_0
+  ]
 }
 
 
@@ -19,6 +27,10 @@ resource "google_project_service" "proj_net_hub_prod_0_services" {
   project                    = google_project.proj_net_hub_prod_0.id
   service                    = var.proj_net_hub_prod_0_services[count.index]
   disable_dependent_services = true
+
+  depends_on = [
+    google_project_service.proj_net_hub_prod_0_crm_service
+  ]
 }
 
 # Budget alert for the project
@@ -57,7 +69,6 @@ resource "google_billing_budget" "proj_net_hub_prod_0_budget" {
   all_updates_rule {
     monitoring_notification_channels = [
       google_monitoring_notification_channel.proj_net_hub_prod_0_notification_channel_1.id,
-      google_monitoring_notification_channel.proj_net_hub_prod_0_notification_channel_2.id
     ]
     disable_default_iam_recipients = true
   }
@@ -78,21 +89,7 @@ resource "google_monitoring_notification_channel" "proj_net_hub_prod_0_notificat
   }
 
   depends_on = [
-    google_project.proj_infra_bapp1_prod_0
-  ]
-}
-
-# Project notification channels (email)
-resource "google_monitoring_notification_channel" "proj_net_hub_prod_0_notification_channel_2" {
-  project      = google_project.proj_net_hub_prod_0.project_id
-  display_name = "amuro_ray@kakao.com"
-  type         = "email"
-
-  labels = {
-    email_address = "amuro_ray@kakao.com" # CHANGE THIS
-  }
-
-  depends_on = [
     google_project.proj_net_hub_prod_0
   ]
 }
+
