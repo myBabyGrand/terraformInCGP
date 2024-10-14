@@ -6,4 +6,6 @@ gcp_zone         = "asia-northeast3-a"
 core_tf_project_services = [
   "cloudbilling.googleapis.com",
   "billingbudgets.googleapis.com",
+  "sqladmin.googleapis.com",
+  "servicenetworking.googleapis.com",
 ]

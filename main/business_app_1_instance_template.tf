@@ -39,7 +39,7 @@ resource "google_compute_instance_template" "business_app_1_app_vm_template" {
 
   metadata = {
     startup-script-url = "gs://${google_storage_bucket.business_app_1_bucket.name}/${google_storage_bucket_object.business_app_1_app_startup_script.name}"
-    # enable-os-login    = "true"
+    enable-os-login    = "true"
   }
 
   network_interface {
@@ -52,17 +52,9 @@ resource "google_compute_instance_template" "business_app_1_app_vm_template" {
   }
 
   service_account {
-    scopes = [
-      "https://www.googleapis.com/auth/devstorage.read_only",
-      "https://www.googleapis.com/auth/logging.write",
-      "https://www.googleapis.com/auth/monitoring.write",
-      "https://www.googleapis.com/auth/pubsub",
-      "https://www.googleapis.com/auth/service.management.readonly",
-      "https://www.googleapis.com/auth/servicecontrol",
-      "https://www.googleapis.com/auth/trace.append",
-    ]
+    email  = google_service_account.sa_vm_bapp1.email
+    scopes = ["cloud-platform"]
   }
-
   scheduling {
     preemptible        = true
     automatic_restart  = false

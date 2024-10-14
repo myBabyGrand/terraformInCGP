@@ -37,7 +37,7 @@ resource "google_compute_backend_service" "business_app_1_backend_svc" {
     capacity_scaler = 0.8
   }
 
-  #   security_policy = google_compute_security_policy.bapp1_cloud_armor_owasp.name
+  security_policy = google_compute_security_policy.bapp1_cloud_armor_owasp.name
 
   #   depends_on = [
   #     google_compute_region_instance_group_manager.business_app_1_igm

@@ -78,6 +78,23 @@ variable "business_app_1_app_vm_config" {
   )
 }
 
+variable "business_app_1_bastion_host_vm_config" {
+  description = "The bastion host VM configuration values and properties"
+  type = object(
+    {
+      app_name          = string
+      short_app_name    = string
+      vm_name           = string
+      vm_type           = string
+      vm_tags           = list(string)
+      vm_image          = string
+      vm_boot_disk_type = string
+      boot_disk_size    = number
+      vm_startup_script = string
+    }
+  )
+}
+
 variable "business_app_1_db_vm_config" {
   description = "The DB VM configuration values and properties"
   type = object(
@@ -102,4 +119,38 @@ variable "named_ports" {
       port_number = number
     })
   })
+}
+
+variable "business_app_1_cloud_sql_config" {
+  description = "The Cloud SQL instance configuration values and properties"
+  type = object(
+    {
+      app_name                     = string
+      short_app_name               = string
+      instance_tier                = string
+      instance_disk_type           = string
+      instance_disk_size           = number
+      instance_disk_autoresize     = bool
+      instance_availability_type   = string
+      instance_ipv4_enabled        = bool
+      instance_deletion_protection = bool
+    }
+  )
+}
+
+variable "proj_infra_iam_test_0_services" {
+  type        = list(string)
+  description = "the list of the services that we want to eable in the GCP project"
+}
+
+variable "cloud_armor_policies" {
+  type = map(object({
+    action      = string
+    priority    = string
+    preview     = bool
+    expression  = string
+    description = string
+    })
+  )
+  description = "The list of Cloud Armor rules to be created"
 }
